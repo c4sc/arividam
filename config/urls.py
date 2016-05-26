@@ -20,7 +20,6 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
-    url(r'^', include('cms.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -35,3 +34,8 @@ if settings.DEBUG:
         url(r'^500/$', default_views.server_error),
         url(r'^__debug__/', include(debug_toolbar.urls)),
     ]
+
+#CMS catch-all patterns should be at the last
+urlpatterns = urlpatterns + [ 
+    url(r'^', include('cms.urls')),
+        ]
