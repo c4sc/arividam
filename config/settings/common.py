@@ -73,6 +73,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # ------------------------------------------------------------------------------
 MIDDLEWARE_CLASSES = (
     # Make sure djangosecure.middleware.SecurityMiddleware is listed first
+    'arividam.middleware.SiteMiddleware',
     'cms.middleware.utils.ApphookReloadMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -284,4 +285,4 @@ CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
 
-
+DEFAULT_SITE_ID = 1
