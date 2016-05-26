@@ -18,6 +18,41 @@ Moved to settings_.
 
 .. _settings: http://cookiecutter-django.readthedocs.io/en/latest/settings.html
 
+Development
+-----------
+
+Setup with Docker
+^^^^^^^^^^^^^^^^^
+
+Use the dev.yml file along with `docker-compose` as detailed in the Deployment/Docker section below.
+
+*Getting Started*::
+
+    $ docker-compose -f dev.yml build
+    $ docker-compose -f dev.yml up
+    $ docker-compose -f dev.yml run django python manage.py migrate
+    $ docker-compose -f dev.yml run django python manage.py createsuperuser
+
+    $ docker inspect arividam_django | grep IPAddress
+
+Use the IP address from the last step to access the running Django instance at http://<ip_address_from_above>:8000/
+
+
+Setup without Docker
+^^^^^^^^^^^^^^^^^^^^
+
+Create a database and user with access. Copy env.example to .env and customize DATABASE_URL using the following format: 
+
+* SQLite format: sqlite:///PATH
+* MySQL: mysql://USER:PASSWORD@HOST:PORT/DATABASE_NAME
+* Postgres: postgres://USER:PASSWORD@HOST:PORT/DATABASE_NAME
+
+Then run::
+
+    $ python manage.py migrate
+    $ python manage.py runserver
+
+
 Basic Commands
 --------------
 
