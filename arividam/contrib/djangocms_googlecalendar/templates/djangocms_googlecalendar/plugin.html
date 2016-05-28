@@ -1,0 +1,1 @@
+<iframe src="https://calendar.google.com/calendar/embed?title=Calendar&amp;height=600&amp;{% for cal in request.site.googlecalendars.all %}src={{ cal.calendar_id|urlencode }}&amp;color=%23{{ cal.colour }}&amp;{% endfor %}ctz=Asia%2FCalcutta" style="border-width:0" height="240" width="320" frameborder="0" scrolling="no"></iframe>
