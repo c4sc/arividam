@@ -1,12 +1,12 @@
 {% load staticfiles i18n %}
-{% load cms_tags sekizai_tags %}
+{% load cms_tags sekizai_tags menu_tags %}
 <!DOCTYPE html>
 
 <html lang="en" >
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{% block title %}arividam{% endblock title %}</title>
+    <title>{% block title %}Arividam{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -24,6 +24,9 @@
 
     <!-- This file store project specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    {% if request.site.config.site_css %}
+    <link href="{{ request.site.config.site_css.url }}" rel="stylesheet">
+    {% endif %}
     {% endblock %}
     {% render_block "css" %}
 
@@ -37,7 +40,7 @@
             <span class="pull-xs-right"><img src="{% static 'images/itschool-logo.png' %}"></span>
             </div>
             <div>
-                <a  href="#"><img src="{% static 'images/logo.gif' %}"></a>
+                <a href="#"><img src="{% if request.site.config.banner_logo %}{{request.site.config.banner_logo.url}}{% else %}{% static 'images/logo.gif' %}{% endif %}"></a>
             </div>
       <nav class="navbar navbar-dark navbar-static-top bg-inverse">
         <div class="container">
@@ -49,9 +52,7 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-toggleable-xs" id="bs-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-              </li>
+                {% show_menu 0 1 100 100 "menu.html" %}
             </ul>
 
             <ul class="nav navbar-nav pull-xs-right">

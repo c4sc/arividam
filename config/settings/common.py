@@ -65,6 +65,7 @@ LOCAL_APPS = (
     'djangocms_video',
     'reversion',
     'arividam.contrib.djangocms_googlecalendar',
+    'arividam.siteconfig',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
