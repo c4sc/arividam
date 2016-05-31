@@ -3,6 +3,7 @@ version: '2'
 volumes:
   postgres_data: {}
   postgres_backup: {}
+  django_static: {}
 
 services:
   postgres:
@@ -16,12 +17,14 @@ services:
     build:
       context: .
       dockerfile: ./compose/django/Dockerfile
-    user: django
+    #user: django
     depends_on:
       - postgres
       - redis
     command: /gunicorn.sh
     env_file: .env
+    volumes:
+      - django_static:/static
 
   nginx:
     build: ./compose/nginx
@@ -29,6 +32,8 @@ services:
       - django
     ports:
       - "0.0.0.0:80:80"
+    volumes:
+      - django_static:/static
 
   redis:
     image: redis:3.0
