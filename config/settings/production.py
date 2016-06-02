@@ -170,7 +170,7 @@ LOGGING = {
     'disable_existing_loggers': True,
     'root': {
         'level': 'WARNING',
-        'handlers': ['sentry'],
+        'handlers': ['console'],
     },
     'formatters': {
         'verbose': {
@@ -208,6 +208,11 @@ LOGGING = {
         'django.security.DisallowedHost': {
             'level': 'ERROR',
             'handlers': ['console', 'sentry'],
+            'propagate': False,
+        },
+        'arividam': {
+            'level': 'WARNING',
+            'handlers': ['console'],
             'propagate': False,
         },
     },
