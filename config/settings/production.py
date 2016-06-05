@@ -125,9 +125,6 @@ STATIC_ROOT = '/static'
 # ------------------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
                          default='arividam <noreply@arividam.in>')
-EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-MAILGUN_ACCESS_KEY = env('DJANGO_MAILGUN_API_KEY')
-MAILGUN_SERVER_NAME = env('DJANGO_MAILGUN_SERVER_NAME')
 EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[arividam] ')
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 
@@ -215,6 +212,11 @@ LOGGING = {
             'handlers': ['console'],
             'propagate': False,
         },
+        'django': {
+            'level': 'WARNING',
+            'handlers': ['console'],
+            'propagate': False
+        }
     },
 }
 #SENTRY_CELERY_LOGLEVEL = env.int('DJANGO_SENTRY_LOG_LEVEL', logging.INFO)
@@ -227,3 +229,5 @@ LOGGING = {
 ADMIN_URL = env('DJANGO_ADMIN_URL')
 
 # Your production stuff: Below this line define 3rd party library settings
+EMAIL_HOST='172.18.0.7'
+EMAIL_PORT=25
