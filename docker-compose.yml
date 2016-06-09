@@ -4,6 +4,7 @@ volumes:
   postgres_data: {}
   postgres_backup: {}
   django_static: {}
+  django_media: {}
 
 services:
   postgres:
@@ -25,13 +26,15 @@ services:
     env_file: .env
     volumes:
       - django_static:/static
+      - django_media:/app/arividam/media
 
   nginx:
     build: ./compose/nginx
     depends_on:
       - django
     volumes:
-      - django_static:/static
+      - django_static:/static:ro
+      - django_media:/media:ro
 
   redis:
     image: redis:3.0
