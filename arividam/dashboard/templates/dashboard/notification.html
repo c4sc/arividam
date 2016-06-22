@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load sekizai_tags %}
+
+{% block title %}
+{{ block.super }} - Compose Notification
+{% endblock %}
+
+{% block content %}
+<div class="form-group">
+<h3>Compose Notification</h3>
+<form action="." method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}</table>
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+</div>  
+{% addtoblock "js" %}
+<script type="text/javascript">
+function hideSection(section) {
+    $("label[for=id_" + section + "]").hide();
+    $("#id_" + section).hide();
+}
+
+function showSection(section) {
+    $("label[for=id_" + section + "]").show();
+    $("#id_" + section).show();
+}
+
+$(document).ready(function() {
+    hideSection("recipients");
+    hideSection("schools");
+    $("#id_notification_type_1").click(function() {
+        showSection("recipients");
+    });
+    $("#id_notification_type_0").click(function() {
+        hideSection("schools");
+        hideSection("recipients");
+    });
+    $("#id_recipients").change(function() {
+        if ($("#id_recipients").val() == "schools") {
+            showSection("schools");
+        }
+    });
+});
+</script>
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<style>
+th {
+    vertical-align: text-top;
+}
+</style>
+{% endaddtoblock %}
+{% endblock %}
+
+

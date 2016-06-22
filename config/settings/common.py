@@ -43,11 +43,16 @@ THIRD_PARTY_APPS = (
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'pagination',
+    'ajax_select',
+    'postman',
+    'notifications',
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'arividam.users',  # custom users app
+    'arividam.dashboard',
     # Your stuff: custom apps go here
     'cms',
     'menus',
@@ -141,6 +146,10 @@ TIME_ZONE = 'Asia/Kolkata'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en'
+
+LANGUAGES = (
+    ('en', 'English'),
+)
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
@@ -281,7 +290,11 @@ CMS_LANGUAGES = {
 CMS_TEMPLATES = (
     ## Customize this
     ('cms/page.html', 'Page'),
-    ('cms/feature.html', 'Page with Feature')
+    ('cms/feature.html', 'Page with Feature'),
+    ('cms/news.html', 'News'),
+    ('cms/article.html', 'Article'),
+    ('cms/notifications.html', 'Notifications'),
+    ('cms/notification.html', 'Notification'),
 )
 
 CMS_PERMISSION = True
@@ -289,3 +302,20 @@ CMS_PERMISSION = True
 CMS_PLACEHOLDER_CONF = {}
 
 DEFAULT_SITE_ID = 1
+
+AJAX_LOOKUP_CHANNELS = {
+    'postman_groups': dict(model='auth.group', search_field='name'),
+    'postman_users': dict(model='users.user', search_field='username'),
+}
+
+POSTMAN_DISALLOW_ANONYMOUS = True
+POSTMAN_AUTO_MODERATE_AS = True
+
+POSTMAN_AUTOCOMPLETER_APP = {
+    'name': 'ajax_select',
+    'field': 'AutoCompleteField',
+    'arg_name': 'channel',
+    'arg_default': 'postman_users',
+}
+
+ACCOUNT_EMAIL_VERIFICATION = "none"

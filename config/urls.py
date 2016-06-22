@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from ajax_select import urls as ajax_select_urls
 
 urlpatterns = [
     #url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
@@ -18,6 +19,10 @@ urlpatterns = [
     # User management
     url(r'^users/', include('arividam.users.urls', namespace='users')),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^ajax_select/', include(ajax_select_urls)),
+    url(r'^messages/', include('postman.urls', namespace='postman', app_name='postman')),
+    url(r'inbox/notifications/', include('notifications.urls', namespace='notifications')),
+    url(r'^dashboard/', include('arividam.dashboard.urls', namespace='dashboard')),
 
     # Your stuff: custom urls includes go here
 

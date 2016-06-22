@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    {% for page in request.current_page.children.all %}
+        <div>{{ page }}</div>
+    {% endfor %}
+</div>
+{% endblock %}

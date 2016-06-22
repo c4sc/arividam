@@ -6,7 +6,7 @@ from .models import GoogleCalendar
 
 # Register your models here.
 class CalendarInline(admin.StackedInline):
-    fields = ('calendar_id', 'colour',)
+    fields = ('title', 'calendar_id', 'colour',)
     model = GoogleCalendar
     can_delete = True
     extra = 0

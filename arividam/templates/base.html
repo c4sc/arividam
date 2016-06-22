@@ -1,5 +1,6 @@
 {% load staticfiles i18n %}
 {% load cms_tags sekizai_tags menu_tags %}
+{% load notifications_tags %}
 <!DOCTYPE html>
 
 <html lang="en" >
@@ -21,7 +22,7 @@
     <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
 
     <!-- Your stuff: Third-party css libraries go here -->
-
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
     <!-- This file store project specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
     {% if request.site.config.site_css %}
@@ -44,7 +45,7 @@
             </div>
       <nav class="navbar navbar-dark navbar-static-top bg-inverse">
         <div class="container">
-          <a class="navbar-brand" href="/">arividam</a>
+            <!-- <a class="navbar-brand" href="/">arividam</a>-->
           <button type="button" class="navbar-toggler hidden-sm-up pull-xs-right" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
             &#9776;
           </button>
@@ -52,14 +53,16 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-toggleable-xs" id="bs-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                {% show_menu 0 1 100 100 "menu.html" %}
+                {% show_menu 0 0 100 100 "menu.html" %}
             </ul>
 
             <ul class="nav navbar-nav pull-xs-right">
               {% if request.user.is_authenticated %}
+                {% if request.user.is_staff %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
+                <a class="nav-link" href="{% url 'dashboard:index' %}">Dashboard</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
                 </li>
@@ -107,6 +110,7 @@
       <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
 
       <!-- Your stuff: Third-party javascript libraries go here -->
+      <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
       <!-- place project specific Javascript in this file -->
       <script src="{% static 'js/project.js' %}"></script>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load cms_tags menu_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <ul>
+            {% show_menu_below_id "news" %}
+        </ul>
+    </div>
+
+    <div class="col-md-8">
+        {% placeholder "content" %} 
+    </div>
+</div>
+{% endblock %}
