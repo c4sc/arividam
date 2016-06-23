@@ -75,15 +75,13 @@ class CreateNotificationForm(forms.Form):
                 body=self.cleaned_data['content'])
         else:
             logger.debug("Creating private notification")
+            User = get_user_model()
             if self.cleaned_data['recipients'] != 'schools':
-                recipients = [self.cleaned_data['recipients']]
+                recipients = [User.objects.get(username=self.cleaned_data['recipients'])]
             else:
                 logger.debug("selected school: %s" % self.cleaned_data['schools'])
                 schools = models.SiteConfiguration.objects.filter(school_type=self.cleaned_data['schools'])
-                logger.debug("schools: {}".format(schools))
-                recipients = list(get_user_model().objects.filter(globalpagepermission__sites__in=[s.site for s in schools]))
-                logger.debug("recipients: {}".format(recipients))
-                logger.debug("type: {}".format(type(recipients)))
+                recipients = list(User.objects.filter(globalpagepermission__sites__in=[s.site for s in schools]))
                 
             # send private notification
             if recipients:
