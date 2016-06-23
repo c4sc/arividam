@@ -1,6 +1,8 @@
 {% load staticfiles i18n %}
 {% load cms_tags sekizai_tags menu_tags %}
 {% load notifications_tags %}
+{% load group_tags %}
+
 <!DOCTYPE html>
 
 <html lang="en" >
@@ -59,9 +61,11 @@
             <ul class="nav navbar-nav pull-xs-right">
               {% if request.user.is_authenticated %}
                 {% if request.user.is_staff %}
+                {% if request.user|has_group:"Officer" %}
                 <li class="nav-item">
                 <a class="nav-link" href="{% url 'dashboard:index' %}">Dashboard</a>
                 </li>
+                {% endif %}
                 {% endif %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
