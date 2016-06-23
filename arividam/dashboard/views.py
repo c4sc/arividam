@@ -24,7 +24,7 @@ class IndexView(TemplateView):
         try:
             context['news'] = Page.objects.search("news")[0]
         except IndexError:
-            news = create_page('News', 'cms/news.html', settings.LANGUAGE_CODE, reverse_id='news', published=True)
+            news = create_page('News', 'cms/news.html', settings.LANGUAGE_CODE, reverse_id='news', published=True, slug='news')
         return context
 
 class NotificationView(FormView):
