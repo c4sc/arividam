@@ -71,6 +71,7 @@ class CreateNotificationForm(forms.Form):
                 #create Notification page
                 notifications = create_page("Notifications", "cms/notifications.html", settings.LANGUAGE_CODE, reverse_id='notifications', published=True)
             notification = create_page(self.cleaned_data['title'], 'cms/notification.html', settings.LANGUAGE_CODE, parent=notifications, published=True)
+            placeholder = notification.placeholders.get(slot='content')
             add_plugin(placeholder, 'TextPlugin', 'en', 
                 body=self.cleaned_data['content'])
         else:
