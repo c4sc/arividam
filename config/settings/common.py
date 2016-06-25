@@ -70,6 +70,8 @@ LOCAL_APPS = (
     'djangocms_video',
     'reversion',
     'arividam.contrib.djangocms_googlecalendar',
+    'arividam.djangocms_notifications',
+    'arividam.djangocms_news',
     'arividam.siteconfig',
 )
 
