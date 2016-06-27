@@ -13,7 +13,7 @@ Production Configurations
 """
 from __future__ import absolute_import, unicode_literals
 
-from boto.s3.connection import OrdinaryCallingFormat
+#from boto.s3.connection import OrdinaryCallingFormat
 from django.utils import six
 
 import logging
@@ -101,9 +101,9 @@ AWS_HEADERS = {
 # stored files.
 
 #  See:http://stackoverflow.com/questions/10390244/
-from storages.backends.s3boto import S3BotoStorage
-StaticRootS3BotoStorage = lambda: S3BotoStorage(location='static')
-MediaRootS3BotoStorage = lambda: S3BotoStorage(location='media')
+#from storages.backends.s3boto import S3BotoStorage
+#StaticRootS3BotoStorage = lambda: S3BotoStorage(location='static')
+#MediaRootS3BotoStorage = lambda: S3BotoStorage(location='media')
 #DEFAULT_FILE_STORAGE = 'config.settings.production.MediaRootS3BotoStorage'
 
 #MEDIA_URL = 'https://s3.amazonaws.com/%s/media/' % AWS_STORAGE_BUCKET_NAME
@@ -176,10 +176,6 @@ LOGGING = {
         },
     },
     'handlers': {
-        'sentry': {
-            'level': 'ERROR',
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-        },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
