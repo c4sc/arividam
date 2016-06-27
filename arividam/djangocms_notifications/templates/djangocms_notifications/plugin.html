@@ -1,8 +1,9 @@
+{% load cms_tags %}
 <div>
     <h1>Notifications</h1>
     <ul>
     {% for notification in notifications.children.all %}
-        <li>{{ notification }}</li>
+    <li><a href="{% page_url notification.pk %}">{{ notification }}</a></li>
     {% endfor %}
     </ul>
 </div>
