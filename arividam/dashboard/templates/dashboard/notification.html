@@ -30,6 +30,13 @@ function showSection(section) {
 $(document).ready(function() {
     hideSection("recipients");
     hideSection("schools");
+    if ($("#id_notification_type_1").prop("checked", true)) {
+        showSection("recipients");
+    }
+    if ($("#id_recipients").val().indexOf("schools") >= 0) {
+        showSection("schools");
+    }
+
     $("#id_notification_type_1").click(function() {
         showSection("recipients");
     });
@@ -38,8 +45,10 @@ $(document).ready(function() {
         hideSection("recipients");
     });
     $("#id_recipients").change(function() {
-        if ($("#id_recipients").val() == "schools") {
+        if ($("#id_recipients").val().indexOf("schools") >= 0) {
             showSection("schools");
+        } else {
+            hideSection("schools");
         }
     });
 });
@@ -50,6 +59,12 @@ $(document).ready(function() {
 <style>
 th {
     vertical-align: text-top;
+}
+#id_recipients {
+    height: 180px;
+}
+#id_schools {
+    height: 200px;
 }
 </style>
 {% endaddtoblock %}

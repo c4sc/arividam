@@ -13,6 +13,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+User = get_user_model()
+
 NOTIFICATION_TYPES = [
     ('public', 'Public'),
     ('private', 'Private'),
@@ -53,12 +55,16 @@ SCHOOLS = [
     ),
 ]
 
+def get_recipients_for_school_type(school_type):
+    schools = models.SiteConfiguration.objects.filter(school_type=school_type)
+    return list(User.objects.filter(globalpagepermission__sites__in=[s.site for s in schools]))
+
 class CreateNotificationForm(forms.Form):
     title = forms.CharField(required=True)
     content = forms.CharField(widget=forms.Textarea(), required=True)
     notification_type = forms.ChoiceField(initial='public', choices=NOTIFICATION_TYPES, widget=forms.RadioSelect())
-    recipients = forms.ChoiceField(choices=RECIPIENTS, required=False)
-    schools = forms.ChoiceField(choices=SCHOOLS, required=False)
+    recipients = forms.MultipleChoiceField(choices=RECIPIENTS, required=False, widget=forms.SelectMultiple())
+    schools = forms.MultipleChoiceField(choices=SCHOOLS, required=False, widget=forms.SelectMultiple())
 
     def post_notification(self, user):
         if self.cleaned_data['notification_type'] == 'public':
@@ -76,14 +82,12 @@ class CreateNotificationForm(forms.Form):
                 body=self.cleaned_data['content'])
         else:
             logger.debug("Creating private notification")
-            User = get_user_model()
-            if self.cleaned_data['recipients'] != 'schools':
-                recipients = [User.objects.get(username=self.cleaned_data['recipients'])]
-            else:
-                logger.debug("selected school: %s" % self.cleaned_data['schools'])
-                schools = models.SiteConfiguration.objects.filter(school_type=self.cleaned_data['schools'])
-                recipients = list(User.objects.filter(globalpagepermission__sites__in=[s.site for s in schools]))
-                
+            recipients = []
+            recipients = [User.objects.get(username=x) for x in self.cleaned_data['recipients'] if x != 'schools']
+            if 'schools' in self.cleaned_data['recipients']:
+                for school_type in self.cleaned_data['schools']:
+                    recipients = recipients + get_recipients_for_school_type(school_type)
+                               
             # send private notification
             if recipients:
                 pm_broadcast(sender=get_user_model().objects.get(username='admin'), 
