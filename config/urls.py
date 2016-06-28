@@ -8,6 +8,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from ajax_select import urls as ajax_select_urls
+from arividam.siteconfig.views import RedirectUserView
 
 urlpatterns = [
     #url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
@@ -23,6 +24,7 @@ urlpatterns = [
     url(r'^messages/', include('postman.urls', namespace='postman', app_name='postman')),
     url(r'inbox/notifications/', include('notifications.urls', namespace='notifications')),
     url(r'^dashboard/', include('arividam.dashboard.urls', namespace='dashboard')),
+    url(r'^redirect/', RedirectUserView.as_view())
 
     # Your stuff: custom urls includes go here
 
