@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load cms_tags %}
 
 {% block content %}
 <div class="row">
     {% for page in request.current_page.children.all %}
-        <div>{{ page }}</div>
+    <div><a href="{% page_url page.id %}">{{ page }}</a></div>
     {% endfor %}
 </div>
 {% endblock %}
