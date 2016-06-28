@@ -68,6 +68,10 @@
                 {% endif %}
                 {% endif %}
                 <li class="nav-item">
+                <a class="nav-link" href="{% url 'postman:inbox' %}">Inbox</a>
+                </li>
+
+                <li class="nav-item">
                   <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
                 </li>
               {% else %}
