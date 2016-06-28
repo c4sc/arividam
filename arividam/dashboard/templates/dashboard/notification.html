@@ -30,10 +30,10 @@ function showSection(section) {
 $(document).ready(function() {
     hideSection("recipients");
     hideSection("schools");
-    if ($("#id_notification_type_1").prop("checked", true)) {
+    if ($("input[id=id_notification_type_1]:checked").val()) {
         showSection("recipients");
     }
-    if ($("#id_recipients").val().indexOf("schools") >= 0) {
+    if ($("#id_recipients").val() && $("#id_recipients").val().indexOf("schools") >= 0) {
         showSection("schools");
     }
 

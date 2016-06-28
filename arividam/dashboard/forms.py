@@ -76,7 +76,15 @@ class CreateNotificationForm(forms.Form):
             else:
                 #create Notification page
                 notifications = create_page("Notifications", "cms/notifications.html", settings.LANGUAGE_CODE, reverse_id='notifications', published=True)
-            notification = create_page(self.cleaned_data['title'], 'cms/notification.html', settings.LANGUAGE_CODE, parent=notifications, published=True)
+
+            slug = ''
+            x = 1
+            while slug == '':
+                if not notifications.children.filter(title_set__slug="notifications-{}".format(x)):
+                    slug = "notification-{}".format(x)
+                x = x + 1
+
+            notification = create_page(self.cleaned_data['title'], 'cms/notification.html', settings.LANGUAGE_CODE, parent=notifications, published=True, slug=slug)
             placeholder = notification.placeholders.get(slot='content')
             add_plugin(placeholder, 'TextPlugin', 'en', 
                 body=self.cleaned_data['content'])
