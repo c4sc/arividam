@@ -99,7 +99,7 @@ class CreateNotificationForm(forms.Form):
                                
             # send private notification
             if recipients:
-                pm_broadcast(sender=get_user_model().objects.get(username='admin'), 
+                pm_broadcast(sender=user, 
                         recipients=recipients, 
                         subject=self.cleaned_data['title'], 
                         body=self.cleaned_data['content'])
