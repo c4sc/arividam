@@ -17,9 +17,10 @@ class NewsPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         news = Page.objects.search("news")[0]
-        children = news.children.order_by("publication_date")
+        children = news.children.order_by("-publication_date")[:3]
         pages = [{'title': child.get_title(settings.LANGUAGE_CODE),
-            'content': child.get_placeholders()[0].render(context, 120)
+            'content': child.get_placeholders()[0].render(context, None),
+            'id': child.pk
             } for child in children]
         context.update({
             'news': pages

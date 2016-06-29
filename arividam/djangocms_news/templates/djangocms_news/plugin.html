@@ -1,26 +1,18 @@
-{% load sekizai_tags %}
-<h1>News</h1>
-<div id="carousel-news" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner" role="listbox">
-    {% for page in news %}
-    <div class="carousel-item{% if forloop.first %} active{% endif %}">
-       {{ page.content }}
+{% load sekizai_tags cms_tags %}
+{% for page in news %}
+<div class="row news-plugin">
+    <div><a href="{% page_url page.id %}">
+        {{ page.content }}
+        </a>
     </div>
-    {% endfor %}
-  </div>
-    <a class="left carousel-control" href="#carousel-news" role="button" data-slide="prev">
-        <span class="icon-prev" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-news" role="button" data-slide="next">
-        <span class="icon-next" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
 </div>
-{% addtoblock "js" %}
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#carousel-news").carousel('cycle');
-});
-</script>
+{% endfor %}
+<div class="pull-right">For more <a href="{% page_url 'news' %}">news</a></div>
+{% addtoblock "css" %}
+<style>
+.news-plugin a,a:focus,a:hover {
+    text-decoration: none;
+    color: black;
+}
+</style>
 {% endaddtoblock %}
