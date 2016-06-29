@@ -60,6 +60,9 @@
 
             <ul class="nav navbar-nav pull-xs-right">
               {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:detail' request.user %}">User: {{ request.user }}</a> 
+                </li>
                 {% if request.user.is_staff %}
                 {% if request.user|has_group:"Officer" %}
                 <li class="nav-item">
@@ -104,6 +107,14 @@
 
     <footer>
         {% static_placeholder "footer" %}
+        <div class="citation row">
+            <div class="col-md-4">
+                <span class="h2">Arividam</span> &copy;2010-2016
+            </div>
+            <div class="col-md-3">
+            online educational portal email: info@arividam.in.
+            </div>
+        </div>
     </footer>
     {% block modal %}{% endblock modal %}
 
