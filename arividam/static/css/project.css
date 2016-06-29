@@ -36,3 +36,10 @@ h1, .h1 {
 
 .alert {
   display: none; }
+
+footer {
+  border-top: 2px solid #0083cb;
+  background-color: #f2f5f9; }
+
+footer .citation {
+  border-top: 2px solid #3abef2; }
