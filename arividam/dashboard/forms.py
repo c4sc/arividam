@@ -88,6 +88,7 @@ class CreateNotificationForm(forms.Form):
             placeholder = notification.placeholders.get(slot='content')
             add_plugin(placeholder, 'TextPlugin', 'en', 
                 body=self.cleaned_data['content'])
+            notification.publish(settings.LANGUAGE_CODE)
         else:
             logger.debug("Creating private notification")
             recipients = []
