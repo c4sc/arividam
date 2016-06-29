@@ -80,7 +80,7 @@ class CreateNotificationForm(forms.Form):
             slug = ''
             x = 1
             while slug == '':
-                if not notifications.children.filter(title_set__slug="notifications-{}".format(x)):
+                if not notifications.children.filter(title_set__slug="notification-{}".format(x)):
                     slug = "notification-{}".format(x)
                 x = x + 1
 
