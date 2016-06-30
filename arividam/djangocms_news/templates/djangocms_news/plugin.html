@@ -7,9 +7,16 @@
     </div>
 </div>
 {% endfor %}
-<div class="pull-right">For more <a href="{% page_url 'news' %}">news</a></div>
+<div class="row">
+    <div class="pull-xs-right">For more <a href="{% page_url 'news' %}">news</a></div>
+</div>
 {% addtoblock "css" %}
 <style>
+.news-plugin {
+    padding-top: 10px;
+    border-bottom: 1px solid black;
+}
+
 .news-plugin a,a:focus,a:hover {
     text-decoration: none;
     color: black;
