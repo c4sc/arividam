@@ -22,6 +22,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
+        context['messages'] = Message.objects.inbox(self.request)
         context['news'] = get_page_by_slug('news')
         if not context['news']:
             context['news'] = create_page('News', 'cms/news.html', settings.LANGUAGE_CODE, reverse_id='news', published=True, slug='news')
