@@ -1,9 +1,19 @@
-{% load cms_tags %}
-<div>
-    <h1>Notifications</h1>
-    <ul>
+{% load cms_tags sekizai_tags %}
+<div class="notifications-plugin">
+    <h3>വിദ്യാഭ്യാസ കലണ്ടര്‍</h3>
+    <ul class="notifications">
     {% for notification in notifications.children.all %}
     <li><a href="{% page_url notification.pk %}">{{ notification }}</a></li>
     {% endfor %}
     </ul>
 </div>
+
+{% addtoblock "css" %}
+<style>
+ul.notifications {
+    padding-left: 1.4em;
+    border: 2px solid black;
+    margin-right: 50px;
+}
+</style>
+{% endaddtoblock %}
