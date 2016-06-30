@@ -9,6 +9,8 @@ from postman.models import Message
 from cms.models import Page
 from cms.api import create_page, add_plugin
 
+from arividam.utils import get_page_by_slug
+
 import logging
 
 logger = logging.getLogger(__name__)
@@ -20,11 +22,9 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['messages'] = Message.objects.inbox(self.request.user)
-        try:
-            context['news'] = Page.objects.search("news")[0]
-        except IndexError:
-            news = create_page('News', 'cms/news.html', settings.LANGUAGE_CODE, reverse_id='news', published=True, slug='news')
+        context['news'] = get_page_by_slug('news')
+        if not context['news']:
+            context['news'] = create_page('News', 'cms/news.html', settings.LANGUAGE_CODE, reverse_id='news', published=True, slug='news')
         return context
 
 class NotificationView(FormView):

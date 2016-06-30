@@ -8,6 +8,7 @@ from cms.api import create_page, add_plugin
 from cms.models import Page
 
 from arividam.siteconfig import models
+from arividam.utils import get_page_by_slug
 
 import logging
 
@@ -70,10 +71,8 @@ class CreateNotificationForm(forms.Form):
         if self.cleaned_data['notification_type'] == 'public':
             # create public notification
             logger.debug("Creating public notification")
-            search_result = Page.objects.search("notifications")
-            if len(search_result) > 0:
-                notifications = search_result[0]
-            else:
+            notifications = get_page_by_slug('notifications')
+            if not notifications:
                 #create Notification page
                 notifications = create_page("Notifications", "cms/notifications.html", settings.LANGUAGE_CODE, reverse_id='notifications', published=True)
 
