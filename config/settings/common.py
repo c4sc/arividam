@@ -198,6 +198,7 @@ TEMPLATES = [
                 # Your stuff: custom template context processors go here
                 'sekizai.context_processors.sekizai',
                 'cms.context_processors.cms_settings',
+                'arividam.siteconfig.context_processors.default_site',
             ],
         },
     },

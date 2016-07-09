@@ -55,6 +55,11 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-toggleable-xs" id="bs-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                {% if request.site.id != DEFAULT_SITE_ID %}
+                <li class="nav-item">
+                <a class="nav-link" href="http://{{ DEFAULT_SITE_URL }}">അറിവിടം</a>
+                </li>                
+                {% endif %}
                 {% show_menu 0 0 100 100 "menu.html" %}
             </ul>
 
