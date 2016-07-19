@@ -16,7 +16,8 @@ class NotificationsPlugin(CMSPluginBase):
     cache = False
 
     def render(self, context, instance, placeholder):
-        context.update({ 'notifications': get_page_by_slug('notifications') })
+        notifications = get_page_by_slug('notifications')
+        context.update({ 'notifications': notifications.children.order_by('-publication_date')[:10] })
         return context
 
 

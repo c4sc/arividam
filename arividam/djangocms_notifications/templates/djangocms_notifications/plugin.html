@@ -1,8 +1,8 @@
 {% load cms_tags sekizai_tags %}
 <div class="notifications-plugin">
-    <h3>വിദ്യാഭ്യാസ കലണ്ടര്‍</h3>
-    <ul class="notifications">
-    {% for notification in notifications.children.all %}
+    <h3>അറിയിപ്പ് </h3>
+    <ul>
+    {% for notification in notifications %}
     <li><a href="{% page_url notification.pk %}">{{ notification }}</a></li>
     {% endfor %}
     </ul>
