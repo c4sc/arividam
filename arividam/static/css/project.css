@@ -27,9 +27,12 @@
 .navbar-dark .navbar-nav > li > a {
   color: white; }
 
+@font-face {
+  font-family: "Meera";
+  src: url("../fonts/Meera.ttf"); }
+
 * {
-  font-size: 13px;
-  line-height: 1.3; }
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial,'Meera', sans-serif; }
 
 h1, .h1 {
   font-size: 2rem; }
