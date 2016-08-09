@@ -4,137 +4,158 @@
 {% load group_tags %}
 
 <!DOCTYPE html>
-
-<html lang="en" >
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>{% block title %}Arividam{% endblock title %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
 
     {% block css %}
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-
-    <!-- Your stuff: Third-party css libraries go here -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- This file store project specific CSS -->
-    <link href="{% static 'css/project.css' %}" rel="stylesheet">
+    <link href="{% static 'css/theme.css' %}" rel="stylesheet">
     {% if request.site.config.site_css %}
     <link href="{{ request.site.config.site_css.url }}" rel="stylesheet">
     {% endif %}
     {% endblock %}
     {% render_block "css" %}
-
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
-
   <body>
     {% cms_toolbar %}
-    <div class="m-b">
-            <div>
-            മലയാളത്തിലെ ആദ്യസമ്പൂര്‍ണ്ണ വിദ്യാഭ്യാസ പോര്‍ട്ടല്‍
-            <span class="pull-xs-right"><img src="{% static 'images/itschool-logo.png' %}"></span>
-            </div>
-            <div>
-                <a href="/"><img src="{% if request.site.config.banner_logo %}{{request.site.config.banner_logo.url}}{% else %}{% static 'images/logo.gif' %}{% endif %}"></a>
-            </div>
-      <nav class="navbar navbar-dark navbar-static-top bg-inverse">
-        <div class="container">
-            <!-- <a class="navbar-brand" href="/">arividam</a>-->
-          <button type="button" class="navbar-toggler hidden-sm-up pull-xs-right" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
-            &#9776;
-          </button>
+      <div class="container-fluid">
+      <!-- layout header with navigation components -->
+      <div class="row">
+        <div class="page-header ar-header">
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-toggleable-xs" id="bs-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                {% if request.site.id != DEFAULT_SITE_ID %}
-                <li class="nav-item">
-                <a class="nav-link" href="http://{{ DEFAULT_SITE_URL }}">അറിവിടം</a>
-                </li>                
-                {% endif %}
+        <!-- Navigation component -->
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand ar-logo" href="#"> 
+              <img src="{% if request.site.config.banner_logo %}{{request.site.config.banner_logo.url}}{% else %}{% static 'images/logo.png' %}{% endif %}" class="media-object img-responsive">
+              </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+             
+         
+              <ul class="nav navbar-nav navbar-right">
+		{% if request.site.id != DEFAULT_SITE_ID %}
+               <li class="active"></li>
+                <li><a class="nav-item nav-link" href="/list-schools/"><span>വിദ്യാലയങ്ങള്‍</span> <span class="sr-only">(current)</span></a></li>
+		{% endif %}
                 {% show_menu 0 0 100 100 "menu.html" %}
-            </ul>
-
-            <ul class="nav navbar-nav pull-xs-right">
-              {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:detail' request.user %}">User: {{ request.user }}</a> 
-                </li>
+                <!--<li><href="/history/"><span>പദ്ധതി</span></a></li>
+                <li><a href="/notifications/"><span>അറിയിപ്പുകള്‍</span></a></li>
+                <li><a href="/downloads/"><span>ഡൗണ്‍ലോഡ്സ്</span></a></li>
+                <li><a href="/news/"><span>വിദ്യാഭ്യാസ വാര്‍ത്തകള്‍</span></a></li>-->
+		
+                <li class="dropdown">
+                  <a href="{% url 'account_signup' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans "Sign Up / Log In" %} <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
                 {% if request.user.is_staff %}
                 {% if request.user|has_group:"Officer" %}
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard:index' %}">Dashboard</a>
+                    <li><a href="#">Dashboard</a></li>
+		{% endif %}
+		{% endif %}
+                    <li><a href="{% url 'postman:inbox' %}">Profile</a></li>
+                    <!--li><a href="#">Something else here</a></li-->
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{% url 'account_logout' %}">{% trans "Sign out" %}</a></li>
+                  </ul>
                 </li>
-                {% endif %}
-                {% endif %}
-                <li class="nav-item">
-                <a class="nav-link" href="{% url 'postman:inbox' %}">Inbox</a>
-                </li>
+              </ul>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Logout" %}</a>
-                </li>
-              {% else %}
-                <li class="nav-item">
-                  <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
-                </li>
-                <li class="nav-item">
-                  <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Log In" %}</a>
-                </li>
-              {% endif %}
-            </ul>
-          </div>
+               
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+
+
         </div>
-      </nav>
-    </div>
+      </div>
 
-    <div class="container main-body">
+        <!-- layout body -->
+        <div class="row">
+	 {% block content %}
+	        <p>Use this document as a way to quick start any new project.</p>
+      	 {% endblock content %}
 
-      {% if messages %}
-          {% for message in messages %}
-              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
-          {% endfor %}
-      {% endif %}
+        <!-- Layout left bar -->
+            <div class="col-md-4 col-xs-4">
+             
+            <!-- Google calender -->
+            <!-- Notifications -->
 
-      {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
-      {% endblock content %}
+            </div>
 
-    </div> <!-- /container -->
+            <!-- Layout right bar -->
+            <div class="col-md-8 col-xs-8"> 
 
-    <footer>
+            <!--layout right bar heading -->
+            </div>
+
+
+            <!-- News feed -->
+            
+        
+        </div>
+
+            
+        <footer>
         {% static_placeholder "footer" %}
-        <div class="citation row">
-            <div class="col-md-4">
+         <div class="row">
+         
+         <div class="citation">
+          <div class="col-md-4">
                 <span class="h2">Arividam</span> &copy;2010-2016
-            </div>
-            <div class="col-md-3">
-            online educational portal email: info@arividam.in.
-            </div>
-        </div>
-    </footer>
+                </div>
+              <div class="col-md-3">
+                online educational portal email: info@arividam.in.
+                </div>
+             
+         </div>
+              <!-- Default panel contents -->
+
+              <!-- Table -->
+            
+                   
+             </div>
+           </footer>  
     {% block modal %}{% endblock modal %}
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+        </div>
+      </div>
     {% block javascript %}
-      <!-- Latest JQuery -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="css/bootstrap/js/bootstrap.min.js"></script>
       <!-- Tether - a requirement for Bootstrap tooltips -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
 
+    <!-- Bootstrap -->
+    <!--<script src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>-->
+      <script src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>
+
       <!-- Latest compiled and minified JavaScript -->
-      <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+      <!--<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>-->
 
       <!-- Your stuff: Third-party javascript libraries go here -->
       <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -144,5 +165,4 @@
     {% endblock javascript %}
     {% render_block "js" %}
   </body>
-</html>
- 
+</html> 

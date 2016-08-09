@@ -1,25 +1,22 @@
 {% load sekizai_tags cms_tags %}
+<!--layout right bar heading -->
+  <div class="ar-right-heading">
+   <div class="row">
+    <div class="col-md-offset-4 col-xs-offset-4">
+     <div class="ar-heading-wrap">
+      <a href="{% page_url 'news' %}"> <span class="label">വിദ്യാഭ്യാസ വാര്‍ത്തകള്‍</span>n></a>
+     </div>
+            
+     </div>   
+    </div>
+                
+   </div>
 {% for page in news %}
-<div class="row news-plugin">
-    <div><a href="{% page_url page.id %}">
-        {{ page.content }}
-        </a>
+<div class="media">
+<div class="media-body">
+   <h2 class="media-heading"><a href="{% page_url page.id %}"></a></h2>
+       <p> {{ page.content }}</p>
+   <hr>
     </div>
 </div>
 {% endfor %}
-<div class="row">
-    <div class="pull-xs-right"><a href="{% page_url 'news' %}">വിദ്യാഭ്യാസ വാര്‍ത്തകള്‍</a></div>
-</div>
-{% addtoblock "css" %}
-<style>
-.news-plugin {
-    padding-top: 10px;
-    border-bottom: 1px solid black;
-}
-
-.news-plugin a,a:focus,a:hover {
-    text-decoration: none;
-    color: black;
-}
-</style>
-{% endaddtoblock %}
