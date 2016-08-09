@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'inbox/notifications/', include('notifications.urls', namespace='notifications')),
     url(r'^dashboard/', include('arividam.dashboard.urls', namespace='dashboard')),
     url(r'^redirect/', RedirectUserView.as_view())
+#    url(r'^notifications/', include('arividam.notifications.urls', namespace='notifications')),
 
     # Your stuff: custom urls includes go here
 

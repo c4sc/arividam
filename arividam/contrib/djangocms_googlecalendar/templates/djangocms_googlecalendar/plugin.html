@@ -1,4 +1,9 @@
-<h2>
-വിദ്യാഭ്യാസ കലണ്ടര്‍
-</h2>
-<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showTz=0&amp;height=600&amp;{% for cal in request.site.googlecalendars.all %}src={{ cal.calendar_id|urlencode }}&amp;color=%23{{ cal.colour }}&amp;{% endfor %}ctz=Asia%2FCalcutta" style="border-width:0" height="240" width="320" frameborder="0" scrolling="no"></iframe>
+ <!-- Google calender -->
+  <div class="panel">
+   <div class="panel-heading">
+    <h3 class="panel-title">വിദ്യാഭ്യാസ കലണ്ടര്‍</h3>
+   </div>
+   <div class="panel-body">
+    <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showTz=0&amp;height=600&amp;{% for cal in request.site.googlecalendars.all %}src={{ cal.calendar_id|urlencode }}&amp;color=%23{{ cal.colour }}&amp;{% endfor %}ctz=Asia%2FCalcutta" style="border-width:0" height="240" width="320" frameborder="0" scrolling="no"></iframe>
+   </div>
+  </div>

@@ -1,0 +1,137 @@
+
+/* layout header - begin */
+.ar-logo{
+	height: auto;
+}
+
+.ar-logo img{
+	width: 125px;
+	height: auto;
+
+}
+.ar-header {
+	margin: auto;
+}
+
+/* custom nav bar */
+
+.navbar-default {
+  background: linear-gradient(to bottom, #0083cb, #0269a3); 
+  border-color: #0269a3;
+}
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  background-color: #015683 !important;
+  color:#ecf0f1;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ecf0f1;
+  background-color: #0269a3;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ecf0f1;
+  background-color: #0269a3;
+}
+.navbar-default .navbar-toggle {
+  border-color: #0269a3;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #0269a3;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+  color: #ecf0f1;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ecf0f1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ecf0f1;
+    background-color: #0269a3;
+  }
+}
+
+/* nav bar-end*/
+/* layout header - end */
+
+/* layout right bar - begin  */
+.ar-feed-thumbnail{
+	width: 220px;
+	height: 160px;
+}
+.ar-heading-wrap{
+	height: 38px;
+    font-size: 16px;
+
+}
+.ar-heading-wrap span {
+	vertical-align: -webkit-baseline-middle;
+	color: #333;
+}
+.ar-right-heading{
+    margin-top: 1px;
+    margin-left: -15px;
+    border-radius: 5px;
+    
+
+}
+/* layout right bar - end  */
+
+/* layout left bar - begin  */
+
+.panel-heading, 
+.ar-right-heading {
+	background-color: #f2f5f9;
+	border: 1px solid #ddd;
+}
+
+/* layout left bar - end  */
+
+/* footer - begin */
+
+
+footer .row {
+	background-color: #f2f5f9;
+}
+.citation {
+      border-top:  2px solid #3abef2;
+      padding: 15px;
+      
+}
+/* Footer - End */
+
