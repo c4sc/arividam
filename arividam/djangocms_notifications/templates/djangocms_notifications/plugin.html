@@ -1,11 +1,17 @@
 {% load cms_tags sekizai_tags %}
+<div class="panel">
 <div class="notifications-plugin">
-    <h3>അറിയിപ്പ് </h3>
-    <ul>
-    {% for notification in notifications %}
-    <li><a href="{% page_url notification.pk %}">{{ notification }}</a></li>
-    {% endfor %}
-    </ul>
+    <div class="panel-heading">
+    <h3 class="panel-title">അറിയിപ്പ് </h3>
+    </div>
+    <div class="panel-body">
+        <ul>
+            {% for notification in notifications %}
+            <li><a href="{% page_url notification.pk %}">{{ notification }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 </div>
 
 {% addtoblock "css" %}
