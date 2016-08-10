@@ -68,17 +68,28 @@
                 <li><a href="/news/"><span>വിദ്യാഭ്യാസ വാര്‍ത്തകള്‍</span></a></li>-->
 		
                 <li class="dropdown">
-                  <a href="{% url 'account_signup' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans "Sign Up / Log In" %} <span class="caret"></span></a>
+                  <a href="{% url 'account_signup' %}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    {% if user.is_authenticated %}
+                        {% trans "Logged in:" %} {{ request.user }}
+                    {% else %}
+                        {% trans "Sign Up / Log In" %} 
+                    {% endif %}
+                    <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                {% if request.user.is_staff %}
-                {% if request.user|has_group:"Officer" %}
+                {% if user.is_staff %}
+                {% if user|has_group:"Officer" %}
                     <li><a href="#">Dashboard</a></li>
-		{% endif %}
-		{% endif %}
+        		{% endif %}
+		        {% endif %}
+                {% if user.is_authenticated %}
                     <li><a href="{% url 'postman:inbox' %}">Profile</a></li>
-                    <!--li><a href="#">Something else here</a></li-->
                     <li role="separator" class="divider"></li>
-                    <li><a href="{% url 'account_logout' %}">{% trans "Sign out" %}</a></li>
+                {% endif %}
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
+                    {% else %}
+                    <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
+                    {% endif %}
                   </ul>
                 </li>
               </ul>
@@ -94,27 +105,9 @@
 
         <!-- layout body -->
         <div class="row">
-	 {% block content %}
+	    {% block content %}
 	        <p>Use this document as a way to quick start any new project.</p>
-      	 {% endblock content %}
-
-        <!-- Layout left bar -->
-            <div class="col-md-4 col-xs-4">
-             
-            <!-- Google calender -->
-            <!-- Notifications -->
-
-            </div>
-
-            <!-- Layout right bar -->
-            <div class="col-md-8 col-xs-8"> 
-
-            <!--layout right bar heading -->
-            </div>
-
-
-            <!-- News feed -->
-            
+      	{% endblock content %}
         
         </div>
 
