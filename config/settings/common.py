@@ -292,6 +292,7 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     ## Customize this
+    ('cms/home.html', 'Home'),
     ('cms/page.html', 'Page'),
     ('cms/feature.html', 'Page with Feature'),
     ('cms/news.html', 'News'),
