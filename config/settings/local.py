@@ -39,18 +39,6 @@ CACHES = {
 }
 #Databases
 #------------------------------------------------------------------------------
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'arividam',
-        'USER': 'arividam',
-        'PASSWORD': 'arividam123',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-	'OPTIONS': {"init_command": "SET storage_engine=MyISAM"},
-    }
-}
-
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
