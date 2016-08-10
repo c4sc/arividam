@@ -20,5 +20,16 @@ class NotificationsPlugin(CMSPluginBase):
         context.update({ 'notifications': notifications.children.order_by('-publication_date')[:10] })
         return context
 
+class MarqueePlugin(CMSPluginBase):
+    model = CMSPlugin
+    name = _("Notifications Marquee")
+    render_template = "djangocms_notifications/marquee.html"
+    cache = True
+
+    def render(self, context, instance, placeholder):
+        notifications = get_page_by_slug("notifications")
+        context.update({ "notifications": notifications.children.order_by('-publication_date')[:10] })
+        return context
 
 plugin_pool.register_plugin(NotificationsPlugin)
+plugin_pool.register_plugin(MarqueePlugin)

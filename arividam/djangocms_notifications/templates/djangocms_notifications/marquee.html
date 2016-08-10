@@ -1,0 +1,15 @@
+{% load sekizai_tags %}
+
+<marquee>
+{% for notification in notifications %}
+{{ notification }}
+{% endfor %}
+</marquee>
+
+{% addtoblock "css" %}
+<style>
+marquee {
+    border: 2px solid rebeccapurple;
+}
+</style>
+{% endaddtoblock %}
