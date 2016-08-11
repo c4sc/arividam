@@ -78,7 +78,7 @@
                   <ul class="dropdown-menu">
                 {% if user.is_staff %}
                 {% if user|has_group:"Officer" %}
-                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="{% url 'dashboard:index' %}">Dashboard</a></li>
         		{% endif %}
 		        {% endif %}
                 {% if user.is_authenticated %}
