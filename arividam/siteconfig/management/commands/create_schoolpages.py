@@ -8,6 +8,7 @@ from django.conf import settings
 from cms.models import Page
 from cms.api import create_page, add_plugin
 from cms.constants import PAGE_TYPES_ID
+from random import choice
 
 class Command(BaseCommand):
     help = 'Creates a school Site'
@@ -33,7 +34,9 @@ class Command(BaseCommand):
 
         types_id = type_root.get_descendants().values_list('pk', flat=True)
         try:
-            school_home_type = Page.objects.get(title_set__slug='school-home', pk__in=types_id)
+            school_home_type = choice(Page.objects.filter(
+                    title_set__slug__startswith='school-home-template', 
+                    pk__in=types_id))
         except Page.DoesNotExist:
             raise CommandError("Page Type: School Home not configured")
 
