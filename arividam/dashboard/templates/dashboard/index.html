@@ -4,7 +4,11 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-4">
-        <h3>Admin Menu</h3>
+        <div class="panel">
+            <div class="panel-heading">
+        <h5>Admin Menu</h5>
+            </div>
+            <div class="panel-body compose">
         <ul class='admin'>
             <li><a href="{% url 'dashboard:notification' %}">Compose Notification</a></li>
             <li>Edit Calendar
@@ -18,27 +22,47 @@
             Post News - Click <a href="{% page_url 'news' %}">here.</a> <strong>then</strong> in the CMS toolbar click Page -> Add Page -> New Sub Page
             </li>
         </ul>
+        </div> <!-- panel-body -->
+        </div>
     </div>
     <div class="col-sm-4">
-        <a href="{% page_url "news" %}"><h3>News</h3></a>
-        {% for item in news.children.all %}
-        <div><a href="{% page_url item %}">{{ item }}</a></div>
-        {% endfor %}
-    </div>
-    <div class="col-sm-4">
-        <a href="{% url 'postman:inbox' %}"><h3>Inbox</h3></a>
+      <div class="panel">
+        <div class="panel-heading">
+        <h5>Inbox</h5>
+        </div>
+        <div class="panel-body">
         <ul>
         {% for message in messages %}
         <li><a href="{% url 'postman:view' message.id %}">{{ message }}</a></li>
         {% endfor %}
         </ul>
+        Go to <a href="{% url 'postman:inbox' %}">Inbox</a>
+        </div>
+      </div>
     </div>
+    <div class="col-sm-4">
+      <div class="panel">
+        <div class="panel-heading">
+        <h5>News</h5>
+        </div>
+        <div class="panel-body">
+        {% for item in news.children.all %}
+        <div><a href="{% page_url item %}">{{ item }}</a></div>
+        {% endfor %}
+        For more <a href="{% page_url "news" %}">news</a>
+        </div>
+      </div>
+    </div>
+
 </div>
 
 {% addtoblock "css" %}
 <style>
 .admin,.calendars {
     padding-left: 1.4em;
+}
+.panel-body,.compose {
+    background-color: #e3e9ff;
 }
 </style>
 {% endaddtoblock %}
