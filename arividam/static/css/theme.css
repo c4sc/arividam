@@ -16,8 +16,9 @@
 /* custom nav bar */
 
 .navbar-default {
-  background: linear-gradient(to bottom, #0083cb, #0269a3); 
-  border-color: #0269a3;
+  /*background: linear-gradient(to bottom, #0083cb, #0269a3); 
+  border-color: #0269a3;*/
+    background: white;
 }
 .navbar-default .navbar-brand {
   color: #ecf0f1;
@@ -135,3 +136,27 @@ footer .row {
 }
 /* Footer - End */
 
+.navbar-nav > li > a {
+    padding-top: 5px;
+    line-height: 10px;
+}
+
+li.nav-item {
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.panel-heading {
+    background: #5d5d5d;
+    color: white;
+    text-align: center;
+}
+
+.nav-link {
+    background-color: #4290e2;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.notifications-plugin > .panel-body {
+    background-color: #e3e9ff;
+}
