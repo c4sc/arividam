@@ -164,3 +164,7 @@ li.nav-item {
 a.glyph-home {
     color: inherit;
 }
+
+.panel-title {
+    font-size: 20px;
+}
