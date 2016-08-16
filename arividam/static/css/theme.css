@@ -160,3 +160,7 @@ li.nav-item {
 .notifications-plugin > .panel-body {
     background-color: #e3e9ff;
 }
+
+a.glyph-home {
+    color: inherit;
+}
