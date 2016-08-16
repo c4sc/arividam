@@ -1,15 +1,15 @@
 {% load sekizai_tags %}
 
-<marquee>
+<marquee scrollamount="2">
 {% for notification in notifications %}
-{{ notification }}
+{{ notification }}||
 {% endfor %}
 </marquee>
 
 {% addtoblock "css" %}
 <style>
 marquee {
-    border: 2px solid rebeccapurple;
+    background: #f0f1f5;
 }
 </style>
 {% endaddtoblock %}
