@@ -168,3 +168,7 @@ a.glyph-home {
 .panel-title {
     font-size: 20px;
 }
+
+.panel {
+    min-width: 350px;
+}
