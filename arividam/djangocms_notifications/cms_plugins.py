@@ -17,7 +17,8 @@ class NotificationsPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         notifications = get_page_by_slug('notifications')
-        context.update({ 'notifications': notifications.children.order_by('-publication_date')[:10] })
+        if notifications:
+            context.update({ 'notifications': notifications.children.order_by('-publication_date')[:10] })
         return context
 
 class MarqueePlugin(CMSPluginBase):
@@ -28,7 +29,8 @@ class MarqueePlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         notifications = get_page_by_slug("notifications")
-        context.update({ "notifications": notifications.children.order_by('-publication_date')[:10] })
+        if notifications:
+            context.update({ "notifications": notifications.children.order_by('-publication_date')[:10] })
         return context
 
 plugin_pool.register_plugin(NotificationsPlugin)
