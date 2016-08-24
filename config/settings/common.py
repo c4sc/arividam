@@ -299,6 +299,9 @@ CMS_TEMPLATES = (
     ('cms/article.html', 'Article'),
     ('cms/notifications.html', 'Notifications'),
     ('cms/notification.html', 'Notification'),
+    ('cms/school_template_1.html', 'school_1'),
+    ('cms/school_template_2.html', 'school_2'),
+    ('cms/school_template_3.html', 'school_3'),
 )
 
 CMS_PERMISSION = True

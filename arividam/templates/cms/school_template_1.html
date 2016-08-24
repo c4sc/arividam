@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load cms_tags %}
+
+  {% block content %}
+    <!-- layout body -->
+    <div class="container">
+  	{% placeholder "hero" %}
+
+        <!-- Three column content start-->
+        <div class="row">
+        	<div class="col-md-4 col-sm-4">
+        		<div class="content-wrap">
+				{% placeholder "column1" %}
+        		</div>
+          
+        	</div>
+
+       		<div class="col-md-4 col-sm-4">
+        		<div class="content-wrap">
+				{% placeholder "column2" %}
+        		</div>  
+        	</div>
+
+        	<div class="col-md-4 col-sm-4">
+        		<div class="content-wrap">
+				{% placeholder "column3" %}
+        		</div>  
+        	</div>
+      </div>
+
+   </div>
+{% endblock %}
