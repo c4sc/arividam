@@ -8,11 +8,12 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from ajax_select import urls as ajax_select_urls
-from arividam.siteconfig.views import RedirectUserView
+from arividam.siteconfig.views import RedirectUserView, SiteListView
 
 urlpatterns = [
     #url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     #url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+    url(r'^list-schools/$', SiteListView.as_view(), name='list-schools'),
 
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, include(admin.site.urls)),
