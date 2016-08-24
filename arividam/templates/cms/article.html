@@ -3,15 +3,22 @@
 {% load cms_tags menu_tags %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-4">
-        <ul>
-            {% show_menu_below_id "news" %}
-        </ul>
-    </div>
-
-    <div class="col-md-8">
-        {% placeholder "content" %} 
+<div class="col-md-4 col-xs-12">
+<div class="panel">
+ <div class="panel-heading">
+    <h3 class="panel-title">വിദ്യാഭ്യാസ വാര്‍ത്തകള്‍</h3>
+ </div>
+<div class="panel-body">
+    <ul class="list-group">
+        {% for page in request.current_page.parent.children.all|dictsortreversed:"publication_date" %}
+        <li class="list-group-item"><a href="{% page_url page.pk %}">{{ page }}</a></li>
+        {% endfor %}
+    </ul>
     </div>
 </div>
+</div>
+<div class="col-md-offset-1 col-md-7 col-xs-12">
+    {% placeholder "content" %}
+</div>
+
 {% endblock %}
