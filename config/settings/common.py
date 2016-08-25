@@ -299,9 +299,10 @@ CMS_TEMPLATES = (
     ('cms/article.html', 'Article'),
     ('cms/notifications.html', 'Notifications'),
     ('cms/notification.html', 'Notification'),
-    ('cms/school_template_1.html', 'school_1'),
-    ('cms/school_template_2.html', 'school_2'),
-    ('cms/school_template_3.html', 'school_3'),
+    ('cms/school_template_1.html', 'School Home 1'),
+    ('cms/school_template_2.html', 'School Home 2'),
+    ('cms/school_template_3.html', 'School Home 3'),
+    ('cms/twocol.html', 'Two Column')
 )
 
 CMS_PERMISSION = True

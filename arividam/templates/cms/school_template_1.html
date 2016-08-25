@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load cms_tags %}
 
-  {% block content %}
-    <!-- layout body -->
-    <div class="container">
+{% block content %}
+    <div class="col-md-12">
   	{% placeholder "hero" %}
+    </div>
 
         <!-- Three column content start-->
         <div class="row">
@@ -27,6 +27,4 @@
         		</div>  
         	</div>
       </div>
-
-   </div>
 {% endblock %}
