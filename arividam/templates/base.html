@@ -105,10 +105,13 @@
 
         <!-- layout body -->
         <div class="row">
-	    {% block content %}
+            <div class="row">
+              {% static_placeholder "marquee" %}
+            </div>
+
+	      {% block content %}
 	        <p>Use this document as a way to quick start any new project.</p>
       	{% endblock content %}
-        
         </div>
 
             
