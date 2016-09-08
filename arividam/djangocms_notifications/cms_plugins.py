@@ -3,7 +3,7 @@ from cms.plugin_pool import plugin_pool
 from cms.models.pluginmodel import CMSPlugin
 from django.utils.translation import ugettext_lazy as _
 from cms.models import Page
-from arividam.utils import get_page_by_slug
+from arividam.utils import get_page_by_slug, get_default_site_page_by_slug
 
 import logging
 
@@ -28,7 +28,7 @@ class MarqueePlugin(CMSPluginBase):
     cache = True
 
     def render(self, context, instance, placeholder):
-        notifications = get_page_by_slug("notifications")
+        notifications = get_default_site_page_by_slug("notifications")
         if notifications:
             context.update({ "notifications": notifications.children.order_by('-publication_date')[:10] })
         return context
