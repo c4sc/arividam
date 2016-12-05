@@ -25,8 +25,8 @@ urlpatterns = [
     url(r'^messages/', include('postman.urls', namespace='postman', app_name='postman')),
     url(r'inbox/notifications/', include('notifications.urls', namespace='notifications')),
     url(r'^dashboard/', include('arividam.dashboard.urls', namespace='dashboard')),
-    url(r'^redirect/', RedirectUserView.as_view()),
-    url(r'^filer/', include('filer.urls')),
+#    url(r'^redirect/', RedirectUserView.as_view()),
+#    url(r'^filer/', include('filer.urls')),
 #    url(r'^notifications/', include('arividam.notifications.urls', namespace='notifications')),
 
     # Your stuff: custom urls includes go here
