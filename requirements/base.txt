@@ -1,6 +1,6 @@
 
 # Bleeding edge Django
-Django==1.9.8
+Django==1.9.12
 
 # Configuration
 django-environ==0.4.0
@@ -40,12 +40,12 @@ redis>=2.10.0
 # Your custom requirements go here
 
 # django-cms requirements
-django-cms==3.3.3
+django-cms==3.4.1
 django-treebeard
 djangocms-admin-style==0.2.2
 django-reversion==1.10.2
-django-classy-tags==0.7.2
-django-sekizai==0.9.0
+django-classy-tags==0.8.0
+django-sekizai==0.10.0
 html5lib>=0.90,!=0.9999,!=0.99999,<0.99999999
 six
 django-filer
