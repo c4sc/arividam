@@ -10,8 +10,7 @@
  </div>
 <div class="panel-body">
     <ul class="list-group">
-        {% query request.current_page.children title_set__published=True title_set__publisher_is_draft=False as published %}
-        {% for page in published|dictsortreversed:"publication_date" %}
+        {% for page in request.current_page.children.all|dictsortreversed:"publication_date" %}
         <li class="list-group-item"><a href="{% page_url page.pk %}">{{ page }}</a></li>
         {% endfor %}
     </ul>
