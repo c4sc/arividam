@@ -48,8 +48,8 @@ django-classy-tags==0.7.2
 django-sekizai==0.9.0
 html5lib>=0.90,!=0.9999,!=0.99999,<0.99999999
 six
-django-filer==0.9.9
-cmsplugin-filer==0.10.1
+django-filer
+cmsplugin-filer
 djangocms-text-ckeditor==3.0.1
 djangocms-link
 djangocms-snippet

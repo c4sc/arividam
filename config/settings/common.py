@@ -47,13 +47,9 @@ THIRD_PARTY_APPS = (
     'ajax_select',
     'postman',
     'notifications',
-)
-
-# Apps specific for this project go here.
-LOCAL_APPS = (
-    'arividam.users',  # custom users app
-    'arividam.dashboard',
-    # Your stuff: custom apps go here
+    'filer',
+    'easy_thumbnails',
+    'mptt',
     'cms',
     'menus',
     'sekizai',
@@ -69,6 +65,13 @@ LOCAL_APPS = (
     'djangocms_teaser',
     'djangocms_video',
     'reversion',
+)
+
+# Apps specific for this project go here.
+LOCAL_APPS = (
+    'arividam.users',  # custom users app
+    'arividam.dashboard',
+    # Your stuff: custom apps go here
     'arividam.contrib.djangocms_googlecalendar',
     'arividam.djangocms_notifications',
     'arividam.djangocms_news',
@@ -76,7 +79,7 @@ LOCAL_APPS = (
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 # MIDDLEWARE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -329,3 +332,4 @@ POSTMAN_AUTOCOMPLETER_APP = {
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
 LOGIN_REDIRECT_URL = '/redirect/'
+
