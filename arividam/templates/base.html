@@ -23,6 +23,21 @@
     {% endif %}
     {% endblock %}
     {% render_block "css" %}
+    <style>
+      .cms-messages {
+        background-color: #5d5d5d;
+      }
+
+      div.cms .cms-messages * {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      #sign-out {
+        top: 10%;
+        left: 10%;
+      }
+    </style>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,8 +47,33 @@
   </head>
   <body>
     {% cms_toolbar %}
-      <div class="container-fluid">
+    <div class="container-fluid">
+       <div id="sign-out" class="modal fade" role="dialog">
+           <div class="modal-dialog" role="document">
+               <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Sign Out</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                <form method="post" action="/accounts/logout/">
+                  {% csrf_token %}
+                  <div>Do you want to logout of the system?</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </form> 
+            </div>
+              </div>
+           </div>
+      </div>
+
+
         <div class="row">
+
             <div class="collapse navbar-collapse pull-right">
                 <a class="glyph-home" href="/"><i class="glyphicon glyphicon-home"></i></a>
                 <i class="glyphicon glyphicon-question-sign"></i>
@@ -58,7 +98,7 @@
                     <li role="separator" class="divider"></li>
                 {% endif %}
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a></li>
+                    <li><a href="#sign-out" data-toggle="modal" data-target="#sign-out">Sign Out</a></li>
                     {% else %}
                     <li><a href="{% url 'account_login' %}">{% trans "Sign In" %}</a></li>
                     {% endif %}
