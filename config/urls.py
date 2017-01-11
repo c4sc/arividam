@@ -9,6 +9,7 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from ajax_select import urls as ajax_select_urls
 from arividam.siteconfig.views import RedirectUserView, SiteListView
+from arividam.djangocms_news.views import check_promoted, promote_news
 
 urlpatterns = [
     #url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
@@ -27,6 +28,8 @@ urlpatterns = [
     url(r'^dashboard/', include('arividam.dashboard.urls', namespace='dashboard')),
     url(r'^redirect/', RedirectUserView.as_view()),
     url(r'^filer/', include('filer.urls')),
+    url(r'^check_promoted/(\d+)/$', check_promoted),
+    url(r'^promote_news/(\d+)/$', promote_news)
 #    url(r'^notifications/', include('arividam.notifications.urls', namespace='notifications')),
 
     # Your stuff: custom urls includes go here

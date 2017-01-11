@@ -1,6 +1,10 @@
 {% extends "postman/base.html" %}
 {% load i18n %}{% load postman_tags %}
+
 {% block content %}
+<div class="row">
+    <div class="col-md-2">{% block postman_menu %}{% endblock %}</div>
+    <div class="col-md-8">
 <div id="postman">
 <h1>{% if pm_messages|length > 1 %}{% trans "Conversation" %}{% else %}{% trans "Message" %}{% endif %}</h1>
 {% for message in pm_messages %}
@@ -19,7 +23,7 @@
 <input type="hidden" {% if pm_messages|length > 1 and message.thread_id %}name="tpks" value="{{ message.thread_id }}"{% else %}name="pks" value="{{ message.pk }}"{% endif %} />
 <a href="{{ next_url }}">{% trans "Back" %}</a>
 <span id="pm_buttons">
-<button type="submit" class="btn btn-secondary" onclick="this.form.action='{% url 'postman:delete' %}?next={{ next_url|urlencode }}'">{% trans "Delete" %}</button>
+<button type="submit" class="btn btn-danger" onclick="this.form.action='{% url 'postman:delete' %}?next={{ next_url|urlencode }}'">{% trans "Delete" %}</button>
 {% if not archived %}<button type="submit" class="btn btn-secondary" onclick="this.form.action='{% url 'postman:archive' %}?next={{ next_url|urlencode }}'">{% trans "Archive" %}</button>{% endif %}
 </span>
 {% if reply_to_pk %}<a href="{% url 'postman:reply' reply_to_pk %}?next={{ next_url|urlencode }}">{% trans "Reply" %}</a>{% endif %}
@@ -33,4 +37,6 @@
 {% endif %}
 {% endfor %}
 </div>
+</div><!-- .col-md-6 -->
+</div><!-- .row -->
 {% endblock %}

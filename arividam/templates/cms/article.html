@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load cms_tags menu_tags %}
+{% load cms_tags menu_tags staticfiles sekizai_tags %}
 
 {% block content %}
 <div class="col-md-4 col-xs-12">
@@ -18,7 +18,41 @@
 </div>
 </div>
 <div class="col-md-offset-1 col-md-7 col-xs-12">
+    {% if request.user.username|slice:":6" == "editor" %}
+    <div class="row">
+        <div class="col-md-3 pull-right">
+            Promote: <button id="promote" type="button" class="btn"><span class="glyphicon glyphicon-star"></span></button>
+        </div>
+    </div>
+    {% endif %}
     {% placeholder "content" %}
 </div>
 
+{% addtoblock "css" %}
+<style>
+#promote {
+  font-size: 20px;
+}
+.promoted {
+  color: yellow;
+}
+</style>
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $.ajax("/check_promoted/{{ request.current_page.id }}/").done(function(data) {
+      if (data.promoted) {
+        $("#promote span").addClass("promoted");
+      } else {
+        $("#promote").on('click', function(evt) {
+            $.ajax("/promote_news/{{ request.current_page.id }}/").done(function(data) {
+                $("#promote span").addClass("promoted");
+            });
+        });
+      }
+    });
+});
+</script>
+{% endaddtoblock %}
 {% endblock %}

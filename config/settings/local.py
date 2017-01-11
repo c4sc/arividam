@@ -111,3 +111,5 @@ LOGGING = {
 }
 
 POSTMAN_DISABLE_USER_EMAILING=True
+
+ALLOWED_HOSTS = ['arun-ternup', 'localhost']
