@@ -41,7 +41,7 @@ def promote_news(request, page_id):
     plugin = old_ph.get_plugins("en")[0]
     pc = {}
     plugin.copy_plugin(ph, settings.LANGUAGE_CODE, pc, no_signals=False)
-    admin = User.object.get(username="admin")
+    admin = User.objects.get(username="admin")
     try:
         editor = User.objects.get(username="editor")
         pm_write(sender=admin, recipient=editor, subject="Promoted news", body="A news article has been promoted. You can visit the article at http://www.arividam.in/{}?edit&language=en".format(article.get_absolute_url(settings.LANGUAGE_CODE)))
