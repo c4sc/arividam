@@ -44,7 +44,7 @@ def promote_news(request, page_id):
     admin = User.objects.get(username="admin")
     try:
         editor = User.objects.get(username="editor")
-        pm_write(sender=admin, recipient=editor, subject="Promoted news", body="A news article has been promoted. You can visit the article at http://www.arividam.in/{}?edit&language=en".format(article.get_absolute_url(settings.LANGUAGE_CODE)))
+        pm_write(sender=admin, recipient=editor, subject="Promoted news", body="A news article has been promoted. You can visit the article at http://www.arividam.in{}?edit&language=en".format(article.get_absolute_url(settings.LANGUAGE_CODE)))
     except User.DoesNotExist:
         pass
     #article.publish(settings.LANGUAGE_CODE)
