@@ -5,5 +5,5 @@ from cms.models import Page
 
 # Create your models here.
 class PromotedNews(models.Model):
-    page = models.ForeignKey(Page)
+    page = models.OneToOneField(Page)
 

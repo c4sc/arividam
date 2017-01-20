@@ -12,6 +12,7 @@ import json
 from arividam.utils import get_default_site_page_by_slug
 from django.contrib.auth import get_user_model
 import logging
+from django.db import IntegrityError
 
 User = get_user_model()
 
@@ -30,8 +31,11 @@ def check_promoted(request, page_id):
 def promote_news(request, page_id):
     page_id = int(page_id)
     page = Page.objects.get(pk=page_id)
-    logger.debug(page)
-    p = PromotedNews.objects.create(page=page)
+    try:
+        p = PromotedNews.objects.create(page=page)
+    except IntegrityError:
+        # article has already been promoted
+        return HttpResponse(json.dumps({"promoted": False}), content_type="application/json")
     news = get_default_site_page_by_slug("news")
     site = Site.objects.get(pk=settings.DEFAULT_SITE_ID)
     article = create_page(page.get_title(settings.LANGUAGE_CODE), 'cms/article.html', settings.LANGUAGE_CODE,
