@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings
 from django.contrib.sites.models import Site
+from django.contrib.sites.shortcuts import get_current_site
 
 # Create your views here.
 from cms.models import Page
@@ -37,8 +38,10 @@ def promote_news(request, page_id):
         # article has already been promoted
         return HttpResponse(json.dumps({"promoted": False}), content_type="application/json")
     news = get_default_site_page_by_slug("news")
+    current_site = get_current_site(request)
+    current_school = current_site.domain.split(".")[0]
     site = Site.objects.get(pk=settings.DEFAULT_SITE_ID)
-    article = create_page(page.get_title(settings.LANGUAGE_CODE), 'cms/article.html', settings.LANGUAGE_CODE,
+    article = create_page("{}-{}".format(current_school, page.get_title(settings.LANGUAGE_CODE)), 'cms/article.html', settings.LANGUAGE_CODE,
             parent=news, published=False, slug=page.get_slug(settings.LANGUAGE_CODE), site=site)
     ph = article.placeholders.get(slot="content")
     old_ph = page.placeholders.get(slot="content")
