@@ -10,7 +10,7 @@
  </div>
 <div class="panel-body">
     <ul class="list-group">
-        {% for page in request.current_page.parent.children.all|dictsortreversed:"publication_date" %}
+        {% for page in request.current_page.parent.children.all|dictsortreversed:"pk" %}
         <li class="list-group-item"><a href="{% page_url page.pk %}">{{ page }}</a></li>
         {% endfor %}
     </ul>

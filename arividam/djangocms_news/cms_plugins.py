@@ -4,7 +4,9 @@ from cms.models.pluginmodel import CMSPlugin
 from django.utils.translation import ugettext_lazy as _
 from cms.models import Page
 from django.conf import settings
+from django.contrib.sites.shortcuts import get_current_site
 from arividam.utils import get_page_by_slug
+from .models import PromotedNews
 
 import logging
 
@@ -28,4 +30,19 @@ class NewsPlugin(CMSPluginBase):
             })
         return context
 
+class FeaturedNewsPlugin(CMSPluginBase):
+    model = CMSPlugin
+    name = _("Featured News")
+    render_template = "djangocms_news/featured.html"
+    cache = False
+
+    def render(self, context, instance, placeholder):
+        site = get_current_site(context['request'])
+        news = PromotedNews.objects.filter(site=site).order_by("-page__publication_date")[:5]
+        context.update({
+            "news": news
+        })
+        return context
+
 plugin_pool.register_plugin(NewsPlugin)
+plugin_pool.register_plugin(FeaturedNewsPlugin)

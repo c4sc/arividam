@@ -1,0 +1,22 @@
+{% load sekizai_tags cms_tags %}
+
+{% for page in news %}
+<div class="container-fluid">
+  <div class="media">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="media-left media-middle">
+          <img src="{{ page.thumbnail.url }}" width="220" height="160" class="align-left">
+        </div>  
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+        <div class="media-body">
+          <div class="media-left media-middle">
+              {{ page.extract|safe }}
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
