@@ -12,11 +12,12 @@
       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
         <div class="media-body">
           <div class="media-left media-middle">
-              {{ page.extract|safe }}
+              {{ page.extract|safe }} <a href="{% page_url page %}">Read article...</a>
           </div>  
         </div>
       </div>
     </div>
   </div>
+  <hr>
 </div>
 {% endfor %}
