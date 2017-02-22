@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class DjangocmsNewsConfig(AppConfig):
-    name = 'djangocms_news'
+    name = 'Promoted News'

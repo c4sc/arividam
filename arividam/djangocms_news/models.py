@@ -18,6 +18,9 @@ class PromotedNews(models.Model):
     site = models.ForeignKey(Site, help_text="The site the article is accessible from", verbose_name="site",
             related_name="djangocms_articles")
 
+    class Meta:
+        verbose_name_plural = "Promoted news"
+
 #class Article(models.Model):
 #    thumbnail = FilerImageField(null=True, blank=True, 
 #            on_delete=models.SET_NULL)
