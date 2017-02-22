@@ -42,7 +42,7 @@ redis>=2.10.0
 # django-cms requirements
 django-cms==3.4.1
 django-treebeard
-djangocms-admin-style==0.2.2
+djangocms-admin-style==1.2.6.2
 django-reversion==1.10.2
 django-classy-tags==0.8.0
 django-sekizai==0.10.0
