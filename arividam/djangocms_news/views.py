@@ -44,7 +44,7 @@ def promote_news(request, page_id):
     current_school = current_site.domain.split(".")[0]
     site = Site.objects.get(pk=settings.DEFAULT_SITE_ID)
     if site != current_site:
-        article = create_page("{}-{}".format(current_school, page.get_title(settings.LANGUAGE_CODE)), 'cms/article.html', settings.LANGUAGE_CODE,
+        article = create_page(u"{}-{}".format(current_school, page.get_title(settings.LANGUAGE_CODE)), 'cms/article.html', settings.LANGUAGE_CODE,
                 parent=news, published=False, slug=page.get_slug(settings.LANGUAGE_CODE), site=site)
         ph = article.placeholders.get(slot="content")
         old_ph = page.placeholders.get(slot="content")
